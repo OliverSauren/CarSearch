@@ -1,6 +1,8 @@
 org\example\MyUI.class
 org\example\MyUI$MyUIServlet.class
+org\gui\views\LoginView.class
 org\services\db\JDBCConnection.class
 org\services\util\views.class
+org\process\control\exceptions\NoSuchUserOrPassword.class
 org\process\control\exceptions\DatabaseException.class
 org\gui\views\MainView.class
