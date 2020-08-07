@@ -8,6 +8,7 @@ import com.vaadin.ui.*;
 import org.example.MyUI;
 import org.model.objects.dto.Auto;
 import org.model.objects.dto.User;
+import org.process.control.AutoSearch;
 import org.services.util.Views;
 
 import java.util.List;
@@ -76,6 +77,7 @@ public class MainView extends VerticalLayout implements View {
                 anzahlSuchanfragen++;
                 grid.removeAllColumns();
                 grid.setCaption("Suchergebnisse");
+                List<Auto> autoList = AutoSearch.getInstance().getAuto(auto);
                 grid.setItems(); //TODO
 
                 grid.addColumn(Auto::getId).setCaption("Auto-ID");
