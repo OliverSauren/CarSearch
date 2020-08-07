@@ -2,7 +2,9 @@ package org.example;
 
 import javax.servlet.annotation.WebServlet;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
@@ -27,6 +29,8 @@ import org.services.util.Views;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
+@Title("Car Search")
+@PreserveOnRefresh
 public class MyUI extends UI {
 
     private User user = null;
@@ -50,8 +54,12 @@ public class MyUI extends UI {
         navigator.addView(Views.MAIN , MainView.class);
         navigator.addView(Views.LOGIN, LoginView.class);
 
-        UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+        UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
+    }
+
+    public MyUI getMyUI() {
+        return (MyUI) UI.getCurrent();
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

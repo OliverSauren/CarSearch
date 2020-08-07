@@ -2,11 +2,13 @@ package org.gui.views;
 
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.example.MyUI;
 import org.model.objects.dto.Auto;
 import org.model.objects.dto.User;
+import org.services.util.Views;
 
 import java.util.List;
 
@@ -18,6 +20,20 @@ public class MainView extends VerticalLayout implements View {
     //TODO Prüfen ob User bereits eingeloggt oder nicht
 
     //TODO Top-Panel hinzufügen
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+
+        User user = ((MyUI) UI.getCurrent()).getUser();
+
+        if ( user == null) {
+           // UI.getCurrent().getNavigator().navigateTo(Views.LOGIN); //Erstmal zu Testzwecken nicht ausführen
+            this.setUp();
+        } else {
+           // this.setUp();
+        }
+
+    }
 
     public void setUp() {
 
@@ -48,11 +64,6 @@ public class MainView extends VerticalLayout implements View {
         grid.setHeightMode(HeightMode.UNDEFINED);
 
         SingleSelect<Auto> autoSingleSelect = grid.asSingleSelect();
-
-
-
-
-
 
         sucheButton.addClickListener(e -> {
             String auto = textField.getValue(); //TODO Spätere On-the-fly implementierung!
