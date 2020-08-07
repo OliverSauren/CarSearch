@@ -1,7 +1,18 @@
 package org.gui.views;
 
-public class MainView {
+import com.vaadin.navigator.View;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.VerticalLayout;
+import org.model.objects.dto.Auto;
 
+public class MainView extends VerticalLayout implements View {
+
+    //TODO Prüfen ob User bereits eingeloggt oder nicht
+
+    //TODO Top-Panel hinzufügen
+
+    //TODO Grid erstellen
+    Grid<Auto> autosGrid = new Grid<>(Auto.class);
 
 
 }
