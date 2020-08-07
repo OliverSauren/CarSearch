@@ -4,6 +4,8 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import org.example.MyUI;
+import org.gui.windows.RegistrationWindow;
+import org.model.objects.dto.Auto;
 import org.model.objects.dto.User;
 import org.process.control.LoginControl;
 import org.process.control.exceptions.DatabaseException;
@@ -30,10 +32,21 @@ public class LoginView extends VerticalLayout implements View {
         verticalLayout.addComponent(loginButton);
         verticalLayout.setComponentAlignment(loginButton , Alignment.MIDDLE_CENTER);
 
+        Label labelText = new Label("Noch nicht Registriert?");
+        verticalLayout.addComponent(labelText);
+        verticalLayout.setComponentAlignment(labelText , Alignment.MIDDLE_CENTER);
+
+        Button registrationButton = new Button("Zur Registrierung");
+        verticalLayout.addComponent(registrationButton);
+        verticalLayout.setComponentAlignment(registrationButton , Alignment.MIDDLE_CENTER);
+
+
+
         Panel panel = new Panel("Login Daten eingeben");
 
         this.addComponent(panel);
         this.setComponentAlignment(panel , Alignment.MIDDLE_CENTER);
+
 
         panel.setContent(verticalLayout);
         panel.setSizeUndefined();
@@ -59,7 +72,22 @@ public class LoginView extends VerticalLayout implements View {
                 passwordField.setValue("");
 
             }
+
+
         });
+
+
+        registrationButton.addClickListener(e -> {
+
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.setHeight("42%");
+            registrationWindow.setWidth("15%");
+            registrationWindow.center();
+            UI.getCurrent().addWindow(registrationWindow);
+
+
+        });
+
 
     }
 
