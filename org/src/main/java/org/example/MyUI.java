@@ -4,14 +4,20 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import org.gui.views.LoginView;
+import org.gui.views.MainView;
 import org.model.objects.dto.User;
+import org.services.util.Views;
+
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
@@ -35,20 +41,17 @@ public class MyUI extends UI {
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        final VerticalLayout layout = new VerticalLayout();
-        
-        final TextField name = new TextField();
-        name.setCaption("Type your name here:");
 
-        Button button = new Button("Click Me");
-        button.addClickListener(e -> {
-            layout.addComponent(new Label("Thanks " + name.getValue() 
-                    + ", it works!"));
-        });
-        
-        layout.addComponents(name, button);
-        
-        setContent(layout);
+        //Session Überblick
+        System.out.println("Neues Session-Objekt erzeugt" + VaadinSession.getCurrent().toString());
+
+        Navigator navigator = new Navigator(this , this);
+
+        navigator.addView(Views.MAIN , MainView.class);
+        navigator.addView(Views.LOGIN, LoginView.class);
+
+        UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+
     }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
