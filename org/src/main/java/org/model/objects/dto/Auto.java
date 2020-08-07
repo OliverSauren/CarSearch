@@ -5,13 +5,15 @@ import java.io.Serializable;
 public class Auto implements Serializable {
 
     private String marke;
+    private String modell;
     private Integer baujahr;
     private String beschreibung;
     private Integer id;
 
-    public Auto(String marke, Integer baujahr, String beschreibung, Integer id ) {
+    public Auto(String marke, String modell, Integer baujahr, String beschreibung, Integer id ) {
 
         this.marke = marke;
+        this.modell = modell;
         this.baujahr = baujahr;
         this.beschreibung = beschreibung;
         this.id = id;
@@ -28,6 +30,14 @@ public class Auto implements Serializable {
 
     public void setMarke(String marke) {
         this.marke = marke;
+    }
+
+    public String getModell() {
+        return modell;
+    }
+
+    public void setModell(String modell) {
+        this.modell = modell;
     }
 
     public Integer getBaujahr() {
