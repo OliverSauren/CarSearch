@@ -12,7 +12,6 @@ public class MainView extends VerticalLayout implements View {
     //TODO Top-Panel hinzufügen
 
     //TODO Grid erstellen
-    Grid<Auto> autosGrid = new Grid<>(Auto.class);
-
+    Grid<Auto> grid = new Grid<>(Auto.class);
 
 }
