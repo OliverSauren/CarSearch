@@ -25,16 +25,15 @@ public class AutoDAO extends AbstractDAO {
 
     public List<Auto> getAuto(String autoSQL) {
         Statement statement = this.getStatement();
+
         ResultSet resultSet = null;
 
         try {
             resultSet = statement.executeQuery(
-                    "SELECT *"
-                    + "FROM carSearch.auto "
-                    + "WHERE carSearch.auto.mark = \'" + autoSQL + "\' "
-                    + "OR WHERE carSearch.auto.modell = \'" + autoSQL + "\' "
-                    + "OR WHERE carSearch.auto.baujahr = \'" + autoSQL + "\'"
-                    + "OR WHERE carSearch.auto.beschreibung = \'" + autoSQL + "\'");
+                    "SELECT * "
+                            + "FROM car.auto "
+                            + "WHERE car.auto.marke = \'" + autoSQL + "\' "
+                            + "OR car.auto.modell = \'" + autoSQL + "\' ");
         } catch (SQLException sqlException) {
 
         }
@@ -43,22 +42,22 @@ public class AutoDAO extends AbstractDAO {
             return null;
         }
 
-        List<Auto> autoList = new ArrayList<>();
+        List<Auto> autoList = new ArrayList<Auto>();
         Auto auto = null;
 
         try {
-            while (resultSet.next()) {
+            while (resultSet.next() ) {
                 auto = new Auto();
                 auto.setId(resultSet.getInt(1));
                 auto.setMarke(resultSet.getString(2));
                 auto.setModell(resultSet.getString(3));
                 auto.setBaujahr(resultSet.getInt(4));
                 auto.setBeschreibung(resultSet.getString(5));
+                autoList.add(auto);
             }
         } catch (SQLException sqlException) {
 
         }
-
         return autoList;
 
     }

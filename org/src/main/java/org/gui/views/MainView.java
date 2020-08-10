@@ -6,6 +6,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.example.MyUI;
+import org.gui.components.TopPanel;
 import org.model.objects.dto.Auto;
 import org.model.objects.dto.User;
 import org.process.control.AutoSearch;
@@ -15,12 +16,10 @@ import java.util.List;
 
 public class MainView extends VerticalLayout implements View {
 
-    private List<Auto> autoList;
-    private Integer anzahlSuchanfragen;
+    private int anzahlSuchanfragen;
+    private Auto autoSelektiert = null;
 
     //TODO Prüfen ob User bereits eingeloggt oder nicht
-
-    //TODO Top-Panel hinzufügen
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -28,15 +27,16 @@ public class MainView extends VerticalLayout implements View {
         User user = ((MyUI) UI.getCurrent()).getUser();
 
         if ( user == null) {
-           // UI.getCurrent().getNavigator().navigateTo(Views.LOGIN); //Erstmal zu Testzwecken nicht ausführen
-            this.setUp();
+           UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
         } else {
-           // this.setUp();
+           this.setUp();
         }
 
     }
 
     public void setUp() {
+
+        addComponent(new TopPanel());
 
         String vorname = null;
 
@@ -64,27 +64,35 @@ public class MainView extends VerticalLayout implements View {
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
 
+
         SingleSelect<Auto> autoSingleSelect = grid.asSingleSelect();
 
         sucheButton.addClickListener(e -> {
-            String auto = textField.getValue(); //TODO Spätere On-the-fly implementierung!
+            String autoSQL = textField.getValue(); //TODO Spätere On-the-fly implementierung!
 
-            if (auto.equals("")) {
+            if (autoSQL.equals("")) {
                 Notification.show("Bitte etwas Eingeben!", Notification.Type.WARNING_MESSAGE);
             } else {
 
                 addComponent(grid);
                 anzahlSuchanfragen++;
-                grid.removeAllColumns();
                 grid.setCaption("Suchergebnisse");
-                List<Auto> autoList = AutoSearch.getInstance().getAuto(auto);
-                grid.setItems(); //TODO
+
+                List<Auto> autoList = AutoSearch.getInstance().getAuto(autoSQL);
+                grid.setItems(autoList);
+                anzahlSuchanfragen++;
+                grid.removeAllColumns();
+
+
+                grid.setHeightByRows(autoList.size());
 
                 grid.addColumn(Auto::getId).setCaption("Auto-ID");
                 grid.addColumn(Auto::getMarke).setCaption("Marke");
                 grid.addColumn(Auto::getModell).setCaption("Modell");
                 grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
                 grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+
+
 
             }
 

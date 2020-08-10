@@ -54,7 +54,7 @@ public class LoginView extends VerticalLayout implements View {
         loginButton.addClickListener(e -> {
             String login = userLogin.getValue();
             String passwort = passwordField.getValue();
-/*
+
             try {
 
                 LoginControl.checkAuthenification(login, passwort);
@@ -73,7 +73,6 @@ public class LoginView extends VerticalLayout implements View {
 
             }
 
- */
 
 
         });
@@ -82,8 +81,7 @@ public class LoginView extends VerticalLayout implements View {
         registrationButton.addClickListener(e -> {
 
             RegistrationWindow registrationWindow = new RegistrationWindow();
-            registrationWindow.setHeight("42%");
-            registrationWindow.setWidth("15%");
+            registrationWindow.setSizeUndefined();
             registrationWindow.center();
             UI.getCurrent().addWindow(registrationWindow);
 

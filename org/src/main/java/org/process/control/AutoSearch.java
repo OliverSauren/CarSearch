@@ -7,11 +7,13 @@ import java.util.List;
 
 public class AutoSearch {
 
-    public static AutoSearch autoSearch = null;
-
     private AutoSearch() {
 
     }
+
+    public static AutoSearch autoSearch = null;
+
+
 
     public static AutoSearch getInstance() {
         if (autoSearch == null) {
