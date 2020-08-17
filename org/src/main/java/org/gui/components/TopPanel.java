@@ -3,7 +3,7 @@ package org.gui.components;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.*;
 import org.example.MyUI;
-import org.model.objects.dto.User;
+import org.model.objects.dto.UserDTO;
 import org.process.control.LoginControl;
 
 public class TopPanel extends HorizontalLayout {
@@ -20,12 +20,12 @@ public class TopPanel extends HorizontalLayout {
 
         HorizontalLayout horizontalLayout = new HorizontalLayout();
 
-        User user = ((MyUI) UI.getCurrent()).getUser();
+        UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
 
         String vorname = null;
 
-        if ( user != null) {
-            vorname = user.getVorname();
+        if ( userDTO != null) {
+            vorname = userDTO.getVorname();
         }
 
         Label logLabl = new Label("Wilkommen " + vorname + "!");

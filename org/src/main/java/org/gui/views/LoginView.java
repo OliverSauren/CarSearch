@@ -5,8 +5,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import org.example.MyUI;
 import org.gui.windows.RegistrationWindow;
-import org.model.objects.dto.Auto;
-import org.model.objects.dto.User;
+import org.model.objects.dto.UserDTO;
 import org.process.control.LoginControl;
 import org.process.control.exceptions.DatabaseException;
 import org.process.control.exceptions.NoSuchUserOrPassword;
@@ -94,9 +93,9 @@ public class LoginView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 
-        User user = ((MyUI) UI.getCurrent()).getUser();
+        UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
 
-        if ( user != null) {
+        if ( userDTO != null) {
             UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
         } else {
             this.setUp();

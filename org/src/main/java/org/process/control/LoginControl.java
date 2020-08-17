@@ -2,7 +2,7 @@ package org.process.control;
 
 import com.vaadin.ui.UI;
 import org.example.MyUI;
-import org.model.objects.dto.User;
+import org.model.objects.dto.UserDTO;
 import org.process.control.exceptions.DatabaseException;
 import org.process.control.exceptions.NoSuchUserOrPassword;
 import org.services.db.JDBCConnection;
@@ -35,15 +35,15 @@ public class LoginControl {
             throw new DatabaseException("Datenbankfehler!");
         }
 
-        User user = null;
+        UserDTO userDTO = null;
 
         try {
             if ( resultSet.next()) {
 
-                user = new User();
-                user.setLogin(resultSet.getString(1));
-                user.setVorname(resultSet.getString(3));
-                user.setNachname(resultSet.getString(4));
+                userDTO = new UserDTO();
+                userDTO.setLogin(resultSet.getString(2));
+                userDTO.setVorname(resultSet.getString(4));
+                userDTO.setNachname(resultSet.getString(5));
 
             } else {
                 throw new NoSuchUserOrPassword();
@@ -55,7 +55,7 @@ public class LoginControl {
             JDBCConnection.getInstance().closeConnection();
         }
 
-        ((MyUI) UI.getCurrent()).setUser(user);
+        ((MyUI) UI.getCurrent()).setUserDTO(userDTO);
 
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 

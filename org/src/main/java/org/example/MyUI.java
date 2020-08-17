@@ -10,14 +10,10 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.server.VaadinSession;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
 import org.gui.views.LoginView;
 import org.gui.views.MainView;
-import org.model.objects.dto.User;
+import org.model.objects.dto.UserDTO;
 import org.services.util.Views;
 
 
@@ -33,14 +29,14 @@ import org.services.util.Views;
 @PreserveOnRefresh
 public class MyUI extends UI {
 
-    private User user = null;
+    private UserDTO userDTO = null;
 
-    public User getUser() {
-        return user;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
     @Override

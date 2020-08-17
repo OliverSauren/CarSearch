@@ -1,10 +1,9 @@
 package org.model.objects.dto;
 
-import java.io.Serializable;
-
-public class User implements Serializable {
+public class RegistrationRequest {
 
     private String login = null;
+    private String passwort = null;
     private String vorname = null;
     private String nachname = null;
 
@@ -14,6 +13,14 @@ public class User implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 
     public String getVorname() {

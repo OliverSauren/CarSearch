@@ -8,7 +8,7 @@ import com.vaadin.ui.*;
 import org.example.MyUI;
 import org.gui.components.TopPanel;
 import org.model.objects.dto.Auto;
-import org.model.objects.dto.User;
+import org.model.objects.dto.UserDTO;
 import org.process.control.AutoSearch;
 import org.services.util.Views;
 
@@ -24,9 +24,9 @@ public class MainView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
 
-        User user = ((MyUI) UI.getCurrent()).getUser();
+        UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
 
-        if ( user == null) {
+        if ( userDTO == null) {
            UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
         } else {
            this.setUp();
@@ -44,10 +44,10 @@ public class MainView extends VerticalLayout implements View {
         Button sucheButton = new Button("Suche" , VaadinIcons.SEARCH);
         TextField textField = new TextField();
 
-        User user = ((MyUI) UI.getCurrent()).getUser();
+        UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
 
-        if ( user != null) {
-            vorname = user.getVorname();
+        if ( userDTO != null) {
+            vorname = userDTO.getVorname();
         }
 
         Label labelText = new Label(vorname + ", gebe das gesuchte Auto ein: ");
