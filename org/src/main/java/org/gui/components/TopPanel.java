@@ -2,7 +2,7 @@ package org.gui.components;
 
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.*;
-import org.example.MyUI;
+import org.gui.ui.MyUI;
 import org.model.objects.dto.UserDTO;
 import org.process.control.LoginControl;
 

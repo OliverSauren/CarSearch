@@ -1,4 +1,4 @@
-package org.objects.entities;
+package org.model.objects.entities;
 
 public class Registration {
 

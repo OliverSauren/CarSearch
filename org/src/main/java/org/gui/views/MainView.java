@@ -5,8 +5,9 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
-import org.example.MyUI;
+import org.gui.ui.MyUI;
 import org.gui.components.TopPanel;
+import org.gui.windows.ReservationWindow;
 import org.model.objects.dto.Auto;
 import org.model.objects.dto.UserDTO;
 import org.process.control.AutoSearch;
@@ -63,9 +64,32 @@ public class MainView extends VerticalLayout implements View {
         Grid<Auto> grid = new Grid<>(Auto.class);
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
+        grid.setSelectionMode(Grid.SelectionMode.SINGLE);
+
+        Button reservierungsButton = new Button("Reservieren");
 
 
-        SingleSelect<Auto> autoSingleSelect = grid.asSingleSelect();
+       // SingleSelect<Auto> autoSingleSelect = grid.asSingleSelect();
+
+
+        reservierungsButton.addClickListener(e -> {
+
+            if (autoSelektiert == null) {
+                return;
+            } else {
+                System.out.println("Auto selektiert: " + this.autoSelektiert.getMarke() + " " + this.autoSelektiert.getModell());
+
+                ReservationWindow reservationWindow = new ReservationWindow(MainView.this.autoSelektiert);
+                UI.getCurrent().addWindow(reservationWindow);
+
+            }
+
+
+
+        });
+        grid.addItemClickListener(event ->
+                autoSelektiert = event.getItem());
+
 
         sucheButton.addClickListener(e -> {
             String autoSQL = textField.getValue(); //TODO Spätere On-the-fly implementierung!
@@ -92,11 +116,13 @@ public class MainView extends VerticalLayout implements View {
                 grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
                 grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
 
-
+                addComponent(reservierungsButton);
+                setComponentAlignment(reservierungsButton, Alignment.MIDDLE_CENTER);
 
             }
 
         });
+
 
 
 

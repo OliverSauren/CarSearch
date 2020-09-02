@@ -1,6 +1,7 @@
 package org.model.dao;
 
-import org.objects.entities.Registration;
+
+import org.model.objects.entities.Registration;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,5 +76,8 @@ public class RegistrationsDAO extends AbstractDAO {
         registration.setId(currentValue);
 
     }
+
+    //TODO Prüfen, ist Nutzer / bzw. Email bereits vorhanden?! --> Fehlerhandling
+    //TODO Prüfen, ob die Email tatsächlich valide ist
 
 }

@@ -7,7 +7,7 @@ import org.gui.windows.ConfirmationWindow;
 import org.model.dao.RegistrationsDAO;
 import org.model.factories.UserFactory;
 import org.model.objects.dto.RegistrationRequest;
-import org.objects.entities.Registration;
+import org.model.objects.entities.Registration;
 
 public class RegistrationProcess {
 

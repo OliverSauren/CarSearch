@@ -3,7 +3,7 @@ package org.gui.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import org.example.MyUI;
+import org.gui.ui.MyUI;
 import org.gui.windows.RegistrationWindow;
 import org.model.objects.dto.UserDTO;
 import org.process.control.LoginControl;

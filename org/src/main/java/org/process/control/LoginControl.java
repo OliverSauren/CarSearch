@@ -1,7 +1,7 @@
 package org.process.control;
 
 import com.vaadin.ui.UI;
-import org.example.MyUI;
+import org.gui.ui.MyUI;
 import org.model.objects.dto.UserDTO;
 import org.process.control.exceptions.DatabaseException;
 import org.process.control.exceptions.NoSuchUserOrPassword;

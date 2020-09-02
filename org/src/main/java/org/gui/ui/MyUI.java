@@ -1,4 +1,4 @@
-package org.example;
+package org.gui.ui;
 
 import javax.servlet.annotation.WebServlet;
 

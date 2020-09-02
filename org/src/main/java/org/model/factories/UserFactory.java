@@ -1,7 +1,7 @@
 package org.model.factories;
 
 import org.model.objects.dto.RegistrationRequest;
-import org.objects.entities.Registration;
+import org.model.objects.entities.Registration;
 
 public class UserFactory {
 
