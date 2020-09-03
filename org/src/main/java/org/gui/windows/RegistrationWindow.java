@@ -1,9 +1,12 @@
 package org.gui.windows;
 
+import com.vaadin.data.Binder;
+import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.*;
 import org.model.objects.dto.Auto;
 import org.model.objects.dto.RegistrationRequest;
 import org.process.control.RegistrationProcess;
+import org.services.util.Email;
 
 public class RegistrationWindow extends Window {
 
@@ -40,15 +43,35 @@ public class RegistrationWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
-                RegistrationRequest registrationRequest = new RegistrationRequest();
+                //TODO Email validierung iwie einbauen
 
-                registrationRequest.setLogin(loginFeld.getValue());
-                registrationRequest.setPasswort(passwordField.getValue());
-                registrationRequest.setVorname(vornameFeld.getValue());
-                registrationRequest.setNachname(nachnameFeld.getValue());
+                Binder<Email> binder = new Binder<>();
+                binder.forField(loginFeld)
+                        .withValidator(new EmailValidator("This doesn't look like a valid mail!"))
+                        .bind(Email::getMail, Email::setMail);
 
 
-                RegistrationProcess.getInstance().createUser(registrationRequest , RegistrationWindow.this);
+                if (binder.isValid()) {
+                    if (vornameFeld.getValue().equals("") ||
+                            nachnameFeld.getValue().equals("") ||
+                            loginFeld.getValue().equals("") ||
+                            passwordField.getValue().equals("")) {
+                        Notification.show("Eingaben unvollständig!" , Notification.Type.ERROR_MESSAGE);
+                    }
+                    else {
+                        RegistrationRequest registrationRequest = new RegistrationRequest();
+
+                        registrationRequest.setLogin(loginFeld.getValue());
+                        registrationRequest.setPasswort(passwordField.getValue());
+                        registrationRequest.setVorname(vornameFeld.getValue());
+                        registrationRequest.setNachname(nachnameFeld.getValue());
+
+
+                        RegistrationProcess.getInstance().createUser(registrationRequest, RegistrationWindow.this);
+                    }
+                } else {
+                    Notification.show("Bitte eine valide E-Mail angeben!" , Notification.Type.ERROR_MESSAGE);
+                }
 
             }
         });
@@ -57,5 +80,6 @@ public class RegistrationWindow extends Window {
         verticalLayout.setComponentAlignment(registrationButton , Alignment.MIDDLE_CENTER);
 
     }
+
 
 }

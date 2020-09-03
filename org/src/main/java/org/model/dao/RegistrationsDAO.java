@@ -78,6 +78,5 @@ public class RegistrationsDAO extends AbstractDAO {
     }
 
     //TODO Prüfen, ist Nutzer / bzw. Email bereits vorhanden?! --> Fehlerhandling
-    //TODO Prüfen, ob die Email tatsächlich valide ist
 
 }

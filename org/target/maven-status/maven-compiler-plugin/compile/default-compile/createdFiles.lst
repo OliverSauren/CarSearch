@@ -4,6 +4,7 @@ org\model\dao\AutoDAO.class
 org\process\control\LoginControl.class
 org\process\control\exceptions\NoSuchUserOrPassword.class
 org\gui\components\TopPanel$2.class
+org\services\util\Email.class
 org\model\objects\dto\Auto.class
 org\gui\views\MainView.class
 org\model\objects\dto\ReservationRequest.class
