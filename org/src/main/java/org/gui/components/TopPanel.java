@@ -3,6 +3,7 @@ package org.gui.components;
 import com.vaadin.icons.VaadinIcons;
 import com.vaadin.ui.*;
 import org.gui.ui.MyUI;
+import org.gui.windows.ListReservationWindow;
 import org.model.objects.dto.UserDTO;
 import org.process.control.LoginControl;
 
@@ -48,6 +49,11 @@ public class TopPanel extends HorizontalLayout {
             @Override
             public void menuSelected(MenuBar.MenuItem menuItem) {
                 //TODO Liste aller Reservierung in einem Window darstellen
+                ListReservationWindow listReservationWindow = new ListReservationWindow();
+                listReservationWindow.setHeight("50%");
+                listReservationWindow.setWidth("50%");
+                listReservationWindow.center();
+                UI.getCurrent().addWindow(listReservationWindow);
             }
         });
 

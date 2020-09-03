@@ -3,7 +3,8 @@ package org.model.objects.dto;
 public class ReservationDetail {
 
     private int id;
-    private String auto = null;
+    private String marke = null;
+    private String modell = null;
     private UserDTO user;
 
     public int getId() {
@@ -14,12 +15,20 @@ public class ReservationDetail {
         this.id = id;
     }
 
-    public String getAuto() {
-        return auto;
+    public String getMarke() {
+        return marke;
     }
 
-    public void setAuto(String auto) {
-        this.auto = auto;
+    public void setMarke(String marke) {
+        this.marke = marke;
+    }
+
+    public String getModell() {
+        return modell;
+    }
+
+    public void setModell(String modell) {
+        this.modell = modell;
     }
 
     public UserDTO getUser() {

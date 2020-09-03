@@ -6,9 +6,12 @@ import org.gui.ui.MyUI;
 import org.gui.windows.ConfirmationWindow;
 import org.model.dao.ReservationDAO;
 import org.model.factories.ReservationFactory;
+import org.model.objects.dto.ReservationDetail;
 import org.model.objects.dto.ReservationRequest;
 import org.model.objects.dto.UserDTO;
 import org.model.objects.entities.Reservation;
+
+import java.util.List;
 
 public class ReservationProcess {
 
@@ -46,6 +49,18 @@ public class ReservationProcess {
 
     }
 
+    public void deleteReservationByID(int id) {
+        ReservationDAO.getInstance().deleteReservationByID(id);
+        UI.getCurrent().addWindow(new ConfirmationWindow("Reservierung wurde storniert!"));
+    }
+
+    public List<ReservationDetail> getAllReservationsForUser() {
+
+        UserDTO user = ((MyUI) UI.getCurrent()).getUserDTO();
+
+        return ReservationDAO.getInstance().getAllBookingsForUser(user);
+
+    }
 
 
 }

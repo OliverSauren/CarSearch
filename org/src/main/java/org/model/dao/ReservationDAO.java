@@ -39,6 +39,8 @@ public class ReservationDAO extends AbstractDAO {
 
             preparedStatement.executeUpdate();
 
+            setReservationID(reservation);
+
             return true;
 
         } catch (SQLException sqlException) {
@@ -55,9 +57,9 @@ public class ReservationDAO extends AbstractDAO {
 
         try {
             resultSet = statement.executeQuery(
-                    "SELECT car.auto.modell, car.reservation.id" +
-                            "FROM car.reservation JOIN car.auto" +
-                            "ON ( car.reservation.autoid = car.auto.id)" +
+                    "SELECT car.auto.marke, car.auto.modell, car.reservation.id " +
+                            "FROM car.reservation JOIN car.auto " +
+                            "ON ( car.reservation.autoid = car.auto.id) " +
                             "WHERE car.reservation.userid = \'" + user.getLogin() + "\' "
             );
         } catch (SQLException sqlException) {
@@ -72,8 +74,9 @@ public class ReservationDAO extends AbstractDAO {
         try {
             while (resultSet.next()) {
                 reservationDetail = new ReservationDetail();
-                reservationDetail.setAuto(resultSet.getString(1)); //TODO Verhalten prüfen!
-                reservationDetail.setId(resultSet.getInt(2));
+                reservationDetail.setMarke(resultSet.getString(1)); //TODO Verhalten prüfen! Hier wird aktuell das Modell ausgegeben
+                reservationDetail.setModell(resultSet.getString(2));
+                reservationDetail.setId(resultSet.getInt(3));
 
                 reservationDetailList.add(reservationDetail);
 
@@ -83,6 +86,41 @@ public class ReservationDAO extends AbstractDAO {
         }
 
         return reservationDetailList;
+
+    }
+
+    private void setReservationID(Reservation reservation) {
+        Statement statement = this.getStatement();
+
+        ResultSet resultSet = null;
+
+        try {
+            resultSet = statement.executeQuery("SELECT max(car.reservation.id) " +
+                    "FROM car.reservation");
+        } catch (SQLException sqlException) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+
+        int currentValue = 0;
+        try {
+            resultSet.next();
+            currentValue = resultSet.getInt(1);
+        } catch (SQLException sqlException) {
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+        }
+
+        reservation.setId(currentValue);
+
+    }
+
+    public void deleteReservationByID(int id) {
+        Statement statement = this.getStatement();
+
+        try {
+            statement.executeQuery("DELETE FROM car.reservation WHERE car.reservation.id = \'" + id + "\';");
+        } catch (SQLException sqlException) {
+            //TODO
+        }
 
     }
 
