@@ -43,8 +43,6 @@ public class RegistrationWindow extends Window {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
-                //TODO Email validierung iwie einbauen
-
                 Binder<Email> binder = new Binder<>();
                 binder.forField(loginFeld)
                         .withValidator(new EmailValidator("This doesn't look like a valid mail!"))

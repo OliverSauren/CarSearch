@@ -1,8 +1,9 @@
 package org.gui.views;
 
-import com.vaadin.icons.VaadinIcons;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.shared.ui.ValueChangeMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.gui.ui.MyUI;
@@ -16,11 +17,9 @@ import org.services.util.Views;
 import java.util.List;
 
 public class MainView extends VerticalLayout implements View {
-
-    private int anzahlSuchanfragen;
+    
     private Auto autoSelektiert = null;
 
-    //TODO Prüfen ob User bereits eingeloggt oder nicht
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -42,8 +41,7 @@ public class MainView extends VerticalLayout implements View {
         String vorname = null;
 
         HorizontalLayout horizontalLayout = new HorizontalLayout();
-        Button sucheButton = new Button("Suche" , VaadinIcons.SEARCH);
-        TextField textField = new TextField();
+        TextField suchFeld = new TextField();
 
         UserDTO userDTO = ((MyUI) UI.getCurrent()).getUserDTO();
 
@@ -54,8 +52,7 @@ public class MainView extends VerticalLayout implements View {
         Label labelText = new Label(vorname + ", gebe das gesuchte Auto ein: ");
 
         horizontalLayout.addComponent(labelText);
-        horizontalLayout.addComponent(textField);
-        horizontalLayout.addComponent(sucheButton);
+        horizontalLayout.addComponent(suchFeld);
         horizontalLayout.setComponentAlignment(labelText, Alignment.MIDDLE_CENTER);
 
         addComponent(horizontalLayout);
@@ -67,9 +64,6 @@ public class MainView extends VerticalLayout implements View {
         grid.setSelectionMode(Grid.SelectionMode.SINGLE);
 
         Button reservierungsButton = new Button("Reservieren");
-
-
-       // SingleSelect<Auto> autoSingleSelect = grid.asSingleSelect();
 
 
         reservierungsButton.addClickListener(e -> {
@@ -85,45 +79,40 @@ public class MainView extends VerticalLayout implements View {
             }
 
 
-
         });
         grid.addItemClickListener(event ->
                 autoSelektiert = event.getItem());
 
+        suchFeld.setValueChangeMode(ValueChangeMode.EAGER);
+        suchFeld.addValueChangeListener(event -> {
 
-        sucheButton.addClickListener(e -> {
-            String autoSQL = textField.getValue(); //TODO Spätere On-the-fly implementierung!
-
-            if (autoSQL.equals("")) {
-                Notification.show("Bitte etwas Eingeben!", Notification.Type.WARNING_MESSAGE);
-            } else {
-
-                addComponent(grid);
-                anzahlSuchanfragen++;
-                grid.setCaption("Suchergebnisse");
-
-                List<Auto> autoList = AutoSearch.getInstance().getAuto(autoSQL);
-                grid.setItems(autoList);
-                anzahlSuchanfragen++;
-                grid.removeAllColumns();
+            String autoSQL = "%" + suchFeld.getValue() + "%";
+            System.out.println(autoSQL);
 
 
-                grid.setHeightByRows(autoList.size());
+            addComponent(grid);
+            grid.setCaption("Suchergebnisse");
 
-                grid.addColumn(Auto::getId).setCaption("Auto-ID");
-                grid.addColumn(Auto::getMarke).setCaption("Marke");
-                grid.addColumn(Auto::getModell).setCaption("Modell");
-                grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
-                grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
 
-                addComponent(reservierungsButton);
-                setComponentAlignment(reservierungsButton, Alignment.MIDDLE_CENTER);
+            List<Auto> autoList = AutoSearch.getInstance().getAuto(autoSQL);
 
-            }
+            grid.setItems(autoList);
+            grid.removeAllColumns();
+
+            //TODO Kleine Meldung wenn kein Ergebniss gefunden werden konnte
+
+            grid.setHeightByRows(autoList.size());
+
+            grid.addColumn(Auto::getId).setCaption("Auto-ID");
+            grid.addColumn(Auto::getMarke).setCaption("Marke");
+            grid.addColumn(Auto::getModell).setCaption("Modell");
+            grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
+            grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+
+            addComponent(reservierungsButton);
+            setComponentAlignment(reservierungsButton, Alignment.MIDDLE_CENTER);
 
         });
-
-
 
 
     }

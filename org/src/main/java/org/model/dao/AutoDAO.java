@@ -28,15 +28,17 @@ public class AutoDAO extends AbstractDAO {
 
         ResultSet resultSet = null;
 
+
         try {
             resultSet = statement.executeQuery(
                     "SELECT * "
                             + "FROM car.auto "
-                            + "WHERE car.auto.marke = \'" + autoSQL + "\' "
-                            + "OR car.auto.modell = \'" + autoSQL + "\' ");
+                            + "WHERE car.auto.marke LIKE \'" + autoSQL + "\' "
+                            + "OR car.auto.modell LIKE \'" +autoSQL + "\' ");
         } catch (SQLException sqlException) {
 
         }
+
 
         if (resultSet == null) {
             return null;
@@ -58,8 +60,8 @@ public class AutoDAO extends AbstractDAO {
         } catch (SQLException sqlException) {
 
         }
+        System.out.println(autoList.toString());
         return autoList;
-
     }
 
 }
