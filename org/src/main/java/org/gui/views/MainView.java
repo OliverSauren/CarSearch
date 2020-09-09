@@ -17,9 +17,8 @@ import org.services.util.Views;
 import java.util.List;
 
 public class MainView extends VerticalLayout implements View {
-    
-    private Auto autoSelektiert = null;
 
+    private Auto autoSelektiert = null;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
@@ -49,12 +48,15 @@ public class MainView extends VerticalLayout implements View {
             vorname = userDTO.getVorname();
         }
 
+        Label informationLabel = new Label("Sie können ein Auto über die Marke oder das Modell suchen.");
         Label labelText = new Label(vorname + ", gebe das gesuchte Auto ein: ");
 
         horizontalLayout.addComponent(labelText);
         horizontalLayout.addComponent(suchFeld);
         horizontalLayout.setComponentAlignment(labelText, Alignment.MIDDLE_CENTER);
 
+        addComponent(informationLabel);
+        setComponentAlignment(informationLabel , Alignment.MIDDLE_CENTER);
         addComponent(horizontalLayout);
         setComponentAlignment(horizontalLayout, Alignment.MIDDLE_CENTER);
 
@@ -99,18 +101,22 @@ public class MainView extends VerticalLayout implements View {
             grid.setItems(autoList);
             grid.removeAllColumns();
 
-            //TODO Kleine Meldung wenn kein Ergebniss gefunden werden konnte
+            if (autoList.size() == 0) {
 
-            grid.setHeightByRows(autoList.size());
+            } else {
 
-            grid.addColumn(Auto::getId).setCaption("Auto-ID");
-            grid.addColumn(Auto::getMarke).setCaption("Marke");
-            grid.addColumn(Auto::getModell).setCaption("Modell");
-            grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
-            grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+                grid.setHeightByRows(autoList.size());
 
-            addComponent(reservierungsButton);
-            setComponentAlignment(reservierungsButton, Alignment.MIDDLE_CENTER);
+                grid.addColumn(Auto::getId).setCaption("Auto-ID");
+                grid.addColumn(Auto::getMarke).setCaption("Marke");
+                grid.addColumn(Auto::getModell).setCaption("Modell");
+                grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
+                grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+
+                addComponent(reservierungsButton);
+                setComponentAlignment(reservierungsButton, Alignment.MIDDLE_CENTER);
+
+            }
 
         });
 

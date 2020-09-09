@@ -80,3 +80,37 @@ public class RegistrationsDAO extends AbstractDAO {
     //TODO Prüfen, ist Nutzer / bzw. Email bereits vorhanden?! --> Fehlerhandling
 
 }
+
+/*
+    public boolean checkDuplicate(Registration registration) {
+        Statement statement = this.getStatement();
+        ResultSet resultSet = null;
+
+        try {
+
+            statement.executeQuery("SELECT * " +
+                    "FROM car.user " +
+                    "WHERE car.user.login = \'" + registration.getLogin() + "\' ");
+
+        } catch (SQLException sqlException) {
+
+            Logger.getLogger(RegistrationsDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+
+        }
+
+        try {
+
+            if (!resultSet.next()) {
+                return false;
+            }
+
+        } catch (SQLException sqlException) {
+
+            Logger.getLogger(RegistrationsDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+
+        }
+
+        return true;
+
+    }
+ */
