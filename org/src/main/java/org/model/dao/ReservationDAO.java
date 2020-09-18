@@ -30,7 +30,6 @@ public class ReservationDAO extends AbstractDAO {
 
     public boolean addReservation(Reservation reservation) {
         String sql = "insert into car.reservation values (default,?,?);";
-        //TODO Falls noch mehr eingetragen werden soll, hier bearbeiten
         PreparedStatement preparedStatement = this.getPreparedStatement(sql);
 
         try {
@@ -74,7 +73,7 @@ public class ReservationDAO extends AbstractDAO {
         try {
             while (resultSet.next()) {
                 reservationDetail = new ReservationDetail();
-                reservationDetail.setMarke(resultSet.getString(1)); //TODO Verhalten prüfen! Hier wird aktuell das Modell ausgegeben
+                reservationDetail.setMarke(resultSet.getString(1));
                 reservationDetail.setModell(resultSet.getString(2));
                 reservationDetail.setId(resultSet.getInt(3));
 
@@ -120,6 +119,7 @@ public class ReservationDAO extends AbstractDAO {
             statement.executeQuery("DELETE FROM car.reservation WHERE car.reservation.id = \'" + id + "\';");
         } catch (SQLException sqlException) {
             //TODO
+            Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
         }
 
     }

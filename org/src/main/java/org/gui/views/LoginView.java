@@ -60,13 +60,13 @@ public class LoginView extends VerticalLayout implements View {
 
             } catch (NoSuchUserOrPassword noSuchUserOrPassword) {
 
-                Notification.show("Fehler" , "Login oder Passwort falsch!" , Notification.Type.ERROR_MESSAGE);
+                Notification.show("Fehler" , "Login oder Passwort falsch! Bitte erneut versuchen." , Notification.Type.ERROR_MESSAGE);
                 userLogin.setValue("");
                 passwordField.setValue("");
 
             } catch (DatabaseException databaseException) {
 
-                Notification.show("Datenbank-Fehler" , Notification.Type.ERROR_MESSAGE);
+                Notification.show("Datenbank-Fehler; Bitte sichere Verbindung überprüfen." , Notification.Type.ERROR_MESSAGE);
                 userLogin.setValue("");
                 passwordField.setValue("");
 

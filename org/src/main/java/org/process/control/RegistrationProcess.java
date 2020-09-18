@@ -4,7 +4,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.gui.windows.ConfirmationWindow;
-import org.model.dao.RegistrationsDAO;
+import org.model.dao.RegistrationDAO;
 import org.model.factories.UserFactory;
 import org.model.objects.dto.RegistrationRequest;
 import org.model.objects.entities.Registration;
@@ -28,7 +28,7 @@ public class RegistrationProcess {
 
         Registration registration = UserFactory.createUser(registrationRequest);
 
-        boolean result = RegistrationsDAO.getInstance().addUser(registration);
+        boolean result = RegistrationDAO.getInstance().addUser(registration);
 
         if (result == true) {
 

@@ -25,7 +25,7 @@ import org.services.util.Views;
  * overridden to add component to the user interface and initialize non-component functionality.
  */
 @Theme("mytheme")
-@Title("Car Search")
+@Title("CarLook")
 @PreserveOnRefresh
 public class MyUI extends UI {
 

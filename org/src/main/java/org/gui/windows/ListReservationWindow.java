@@ -37,8 +37,6 @@ public class ListReservationWindow extends Window {
 
         reservationDetailGrid.setItems(reservationDetailList);
 
-        //TODO addColumn Die Frage ist, was genau sonst unter Auto angezeigt wird, da noch genauer drauf achten!
-
         reservationDetailGrid.addColumn(ReservationDetail::getMarke).setCaption("Marke");
         reservationDetailGrid.addColumn(ReservationDetail::getModell).setCaption("Modell");
         reservationDetailGrid.addColumn(ReservationDetail::getId).setCaption("Reservierungs-ID");
@@ -49,8 +47,6 @@ public class ListReservationWindow extends Window {
 
             reservationDetailGrid.removeAllColumns();
             reservationDetailGrid.setItems(reservationDetailList);
-
-            //TODO selber Fall wie oben!
 
             reservationDetailGrid.addColumn(ReservationDetail::getMarke).setCaption("Marke");
             reservationDetailGrid.addColumn(ReservationDetail::getModell).setCaption("Modell");

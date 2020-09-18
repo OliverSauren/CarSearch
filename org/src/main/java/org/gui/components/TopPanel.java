@@ -13,7 +13,7 @@ public class TopPanel extends HorizontalLayout {
 
         this.setSizeFull();
 
-        Label headLabel = new Label("Car Search");
+        Label headLabel = new Label("CarLook Ltd. Autosuche");
         headLabel.setSizeUndefined();
 
         this.addComponent(headLabel);
@@ -48,7 +48,6 @@ public class TopPanel extends HorizontalLayout {
         menuItem.addItem("Reservierungen", VaadinIcons.CAR, new MenuBar.Command() {
             @Override
             public void menuSelected(MenuBar.MenuItem menuItem) {
-                //TODO Liste aller Reservierung in einem Window darstellen
                 ListReservationWindow listReservationWindow = new ListReservationWindow();
                 listReservationWindow.setHeight("50%");
                 listReservationWindow.setWidth("50%");

@@ -8,13 +8,13 @@ org\services\util\Email.class
 org\model\objects\dto\Auto.class
 org\gui\views\MainView.class
 org\model\objects\dto\ReservationRequest.class
+org\model\dao\RegistrationDAO.class
 org\model\objects\entities\Reservation.class
 org\process\control\AutoSearch.class
 org\gui\views\LoginView.class
 org\model\factories\UserFactory.class
 org\gui\windows\ReservationWindow$1.class
 org\gui\ui\MyUI.class
-org\model\dao\RegistrationsDAO.class
 org\process\control\RegistrationProcess.class
 org\gui\windows\ConfirmationWindow.class
 org\model\dao\AbstractDAO.class

@@ -16,8 +16,6 @@ public class ReservationWindow extends Window {
         verticalLayout.setMargin(true);
         setContent(verticalLayout);
 
-        //TODO Welche Informationen sollen abgefragt und gespeichert werden?
-
         setClosable(true);
 
         Button reservierungsButton = new Button("Reservierung");

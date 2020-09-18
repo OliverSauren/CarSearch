@@ -10,17 +10,17 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RegistrationsDAO extends AbstractDAO {
+public class RegistrationDAO extends AbstractDAO {
 
-    public static RegistrationsDAO registrationsDAO = null;
+    public static RegistrationDAO registrationsDAO = null;
 
-    private RegistrationsDAO() {
+    private RegistrationDAO() {
 
     }
 
-    public static RegistrationsDAO getInstance() {
+    public static RegistrationDAO getInstance() {
         if (registrationsDAO == null) {
-            registrationsDAO = new RegistrationsDAO();
+            registrationsDAO = new RegistrationDAO();
         }
         return registrationsDAO;
     }
@@ -42,7 +42,7 @@ public class RegistrationsDAO extends AbstractDAO {
             return true;
 
         } catch (SQLException sqlException) {
-            Logger.getLogger(RegistrationsDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+            Logger.getLogger(RegistrationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
             return false;
         }
 
@@ -59,7 +59,7 @@ public class RegistrationsDAO extends AbstractDAO {
                     "FROM car.user");
 
         } catch (SQLException sqlException) {
-            Logger.getLogger(RegistrationsDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+            Logger.getLogger(RegistrationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
         }
 
         int currentValue = 0;
@@ -70,7 +70,7 @@ public class RegistrationsDAO extends AbstractDAO {
             currentValue = resultSet.getInt(1);
 
         } catch (SQLException sqlException) {
-            Logger.getLogger(RegistrationsDAO.class.getName()).log(Level.SEVERE, null, sqlException);
+            Logger.getLogger(RegistrationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
         }
 
         registration.setId(currentValue);

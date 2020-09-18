@@ -24,23 +24,23 @@ public class WebPageTest {
 
         // Go to LocalHost http://localhost:8080/#!login
         driver.get("http://localhost:8080/#!login");
-        Thread.sleep(2000);
+        Thread.sleep(2000); //Thread.sleep für bessere Beobachtung
 
         // Maximize the page
         driver.manage().window().maximize();
         Thread.sleep(2000);
 
-        // Select Login Textfield and enter "testcase@selenium.de"
+        // Select Login Textfield and enter "webdriver@test.de"
         driver.findElement(By.xpath("//*[@id=\"gwt-uid-3\"]")).sendKeys("webdriver@test.de");
         Thread.sleep(2000);
 
-        // Select Password PasswordField and enter "1234xyz98"
+        // Select Password PasswordField and enter "456al5ghb"
         driver.findElement(By.xpath("//*[@id=\"gwt-uid-5\"]")).sendKeys("456al5ghb");
         Thread.sleep(2000);
 
         // Press Button "Login"
         driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div/div/div[2]/div/div[5]/div")).click();
-        Thread.sleep(4000);
+        Thread.sleep(3000);
 
     }
 

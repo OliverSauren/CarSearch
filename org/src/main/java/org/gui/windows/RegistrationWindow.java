@@ -3,7 +3,6 @@ package org.gui.windows;
 import com.vaadin.data.Binder;
 import com.vaadin.data.validator.EmailValidator;
 import com.vaadin.ui.*;
-import org.model.objects.dto.Auto;
 import org.model.objects.dto.RegistrationRequest;
 import org.process.control.RegistrationProcess;
 import org.services.util.Email;
@@ -68,7 +67,7 @@ public class RegistrationWindow extends Window {
                         RegistrationProcess.getInstance().createUser(registrationRequest, RegistrationWindow.this);
                     }
                 } else {
-                    Notification.show("Bitte eine valide E-Mail angeben!" , Notification.Type.ERROR_MESSAGE);
+                    Notification.show("Ungültige E-Mail. Bitte eine valide E-Mail angeben! Z.B. muster@beispiel.com " , Notification.Type.ERROR_MESSAGE);
                 }
 
             }
