@@ -37,14 +37,14 @@ public class RegistrationWindow extends Window {
 
         setClosable(true);
 
-        Button registrationButton = new Button("Registration");
+        Button registrationButton = new Button("Registrieren");
         registrationButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent clickEvent) {
 
                 Binder<Email> binder = new Binder<>();
                 binder.forField(loginFeld)
-                        .withValidator(new EmailValidator("This doesn't look like a valid mail!"))
+                        .withValidator(new EmailValidator("Diese E-Mail ist nicht valide!"))
                         .bind(Email::getMail, Email::setMail);
 
 
@@ -67,7 +67,7 @@ public class RegistrationWindow extends Window {
                         RegistrationProcess.getInstance().createUser(registrationRequest, RegistrationWindow.this);
                     }
                 } else {
-                    Notification.show("Ungültige E-Mail. Bitte eine valide E-Mail angeben! Z.B. muster@beispiel.com " , Notification.Type.ERROR_MESSAGE);
+                    Notification.show("Ungültige E-Mail. Bitte eine valide E-Mail angeben! Z.B. muster@beispiel.de " , Notification.Type.ERROR_MESSAGE);
                 }
 
             }

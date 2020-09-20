@@ -37,9 +37,7 @@ public class RegistrationProcess {
 
         } else {
 
-            Notification.show("Something went wrong..." , Notification.Type.ERROR_MESSAGE);
-
-            //TODO Fehlerhandling
+            Notification.show("Diese E-Mail wird bereits verwendet! Bitte eine andere E-Mail angeben." , Notification.Type.ERROR_MESSAGE);
 
         }
 

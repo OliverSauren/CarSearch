@@ -118,7 +118,6 @@ public class ReservationDAO extends AbstractDAO {
         try {
             statement.executeQuery("DELETE FROM car.reservation WHERE car.reservation.id = \'" + id + "\';");
         } catch (SQLException sqlException) {
-            //TODO
             Logger.getLogger(ReservationDAO.class.getName()).log(Level.SEVERE, null, sqlException);
         }
 

@@ -1,5 +1,6 @@
 package org.process.control;
 
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
 import org.gui.ui.MyUI;
@@ -43,7 +44,7 @@ public class ReservationProcess {
 
         } else {
 
-            //TODO Fehlerhandling
+            Notification.show("Bei der Reservierung ist ein unerwarteter Fehler aufgetreten." , Notification.Type.ERROR_MESSAGE);
 
         }
 

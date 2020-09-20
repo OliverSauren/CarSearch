@@ -31,7 +31,7 @@ public class LoginView extends VerticalLayout implements View {
         verticalLayout.addComponent(loginButton);
         verticalLayout.setComponentAlignment(loginButton , Alignment.MIDDLE_CENTER);
 
-        Label labelText = new Label("Noch nicht Registriert?");
+        Label labelText = new Label("Noch nicht registriert?");
         verticalLayout.addComponent(labelText);
         verticalLayout.setComponentAlignment(labelText , Alignment.MIDDLE_CENTER);
 

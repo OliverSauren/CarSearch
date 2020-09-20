@@ -30,12 +30,12 @@ public class WebPageTest {
         driver.manage().window().maximize();
         Thread.sleep(2000);
 
-        // Select Login Textfield and enter "webdriver@test.de"
-        driver.findElement(By.xpath("//*[@id=\"gwt-uid-3\"]")).sendKeys("webdriver@test.de");
+        // Select Login Textfield and enter "testcase@selenium.de"
+        driver.findElement(By.xpath("//*[@id=\"gwt-uid-3\"]")).sendKeys("testcase@selenium.de");
         Thread.sleep(2000);
 
-        // Select Password PasswordField and enter "456al5ghb"
-        driver.findElement(By.xpath("//*[@id=\"gwt-uid-5\"]")).sendKeys("456al5ghb");
+        // Select Password PasswordField and enter "1234xyz98"
+        driver.findElement(By.xpath("//*[@id=\"gwt-uid-5\"]")).sendKeys("1234xyz98");
         Thread.sleep(2000);
 
         // Press Button "Login"
